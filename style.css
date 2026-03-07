@@ -1117,6 +1117,76 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .lang-bar-bg { display: none; }
 
 /* ============================================================
+   FLAG BACKGROUND IMAGES ON LANGUAGE CIRCLES
+   Flags from flagcdn.com, with semi-transparent overlay for readability
+   ============================================================ */
+
+/* Base: make the card itself a flag background container */
+.lang-card.ma-flag,
+.lang-card.gb-flag,
+.lang-card.fr-flag,
+.lang-card.it-flag {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+/* Individual flag images */
+.lang-card.ma-flag { background-image: url('https://flagcdn.com/w160/ma.webp'); }
+.lang-card.gb-flag { background-image: url('https://flagcdn.com/w160/gb.webp'); }
+.lang-card.fr-flag { background-image: url('https://flagcdn.com/w160/fr.webp'); }
+.lang-card.it-flag { background-image: url('https://flagcdn.com/w160/it.webp'); }
+
+/* Override the ::after fill so the flag shows through;
+   use a semi-transparent overlay instead of solid bg fill */
+.lang-card.ma-flag::after,
+.lang-card.gb-flag::after,
+.lang-card.fr-flag::after,
+.lang-card.it-flag::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  /* Dark semi-transparent overlay so text stays readable */
+  background: rgba(8, 11, 18, 0.62);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Light mode: slightly lighter overlay */
+[data-theme="light"] .lang-card.ma-flag::after,
+[data-theme="light"] .lang-card.gb-flag::after,
+[data-theme="light"] .lang-card.fr-flag::after,
+[data-theme="light"] .lang-card.it-flag::after {
+  background: rgba(255, 255, 255, 0.60);
+}
+
+/* Make text on flag cards always crisp white in dark, dark in light */
+.lang-card.ma-flag .lang-name,
+.lang-card.gb-flag .lang-name,
+.lang-card.fr-flag .lang-name,
+.lang-card.it-flag .lang-name {
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] .lang-card.ma-flag .lang-name,
+[data-theme="light"] .lang-card.gb-flag .lang-name,
+[data-theme="light"] .lang-card.fr-flag .lang-name,
+[data-theme="light"] .lang-card.it-flag .lang-name {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+/* Hide the emoji flag because the background image replaces it */
+.lang-card.ma-flag .lang-flag,
+.lang-card.gb-flag .lang-flag,
+.lang-card.fr-flag .lang-flag,
+.lang-card.it-flag .lang-flag {
+  display: none;
+}
+
+/* ============================================================
    11. EXPERIENCE TIMELINE
    ============================================================ */
 .timeline {

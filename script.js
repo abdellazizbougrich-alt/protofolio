@@ -65,7 +65,48 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================
-  // 3. HEADER SCROLL STATE & SCROLL-TO-TOP BUTTON
+  // 3. LANGUAGE SWITCHER
+  // ==========================================================
+  const langBtns = document.querySelectorAll('.lang-btn');
+  
+  const setLanguage = (lang) => {
+    // Save preference
+    localStorage.setItem('preferred_lang', lang);
+    
+    // Update active button state
+    langBtns.forEach(btn => {
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Toggle visibility of .lang elements
+    const langElements = document.querySelectorAll('.lang');
+    langElements.forEach(el => {
+      if (el.classList.contains(lang)) {
+        el.style.display = ''; // Show Element
+      } else {
+        el.style.display = 'none'; // Hide Element
+      }
+    });
+  };
+
+  // Initialize with saved language or default to 'en'
+  const savedLang = localStorage.getItem('preferred_lang') || 'en';
+  setLanguage(savedLang);
+
+  // Listen for clicks on language buttons
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      setLanguage(lang);
+    });
+  });
+
+  // ==========================================================
+  // 4. HEADER SCROLL STATE & SCROLL-TO-TOP BUTTON
   // ==========================================================
   const header = document.getElementById('header');
   const scrollTopBtn = document.getElementById('scroll-top');
@@ -91,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================
-  // 4. ACTIVE NAV LINK ON SCROLL
+  // 5. ACTIVE NAV LINK ON SCROLL
   // ==========================================================
   const sections = document.querySelectorAll('section[id]');
   
@@ -116,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', highlightNavLink, { passive: true });
 
   // ==========================================================
-  // 5. INTERSECTION OBSERVER (Scroll Animations)
+  // 6. INTERSECTION OBSERVER (Scroll Animations)
   // ==========================================================
   const revealElements = document.querySelectorAll('.reveal');
   const skillBadges = document.querySelectorAll('.skill-badge');
@@ -188,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================
-  // 6. CONTACT FORM SIMULATION
+  // 7. CONTACT FORM SIMULATION
   // ==========================================================
   const contactForm = document.getElementById('contact-form');
   const submitBtn = document.getElementById('form-submit-btn');
