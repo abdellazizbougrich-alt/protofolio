@@ -138,15 +138,11 @@
           </div>
         </div>
         <div class="hero-image-wrap animate-delay-3">
-          <div class="hero-image-composition">
-            <div class="hero-profile-img-wrap shape-1">
-              <img src="assets/images/hero-img-1.jpg" alt="Abdelaziz Bougrich Technical Sales"
-                class="hero-profile-img" />
+          <figure class="hero-image-composition reveal" aria-label="Portrait of Abdelaziz">
+            <div class="hero-img-wrapper">
+              <img src="assets/images/profile-placeholder.jpeg" alt="Abdelaziz Professional Portrait" class="hero-img-fullscreen" loading="lazy" />
             </div>
-            <div class="hero-profile-img-wrap shape-2">
-              <img src="assets/images/hero-img-2.jpg" alt="Abdelaziz Bougrich Portfolio" class="hero-profile-img" />
-            </div>
-          </div>
+          </figure>
         </div>
       </div>
       <div class="hero-scroll-indicator" aria-hidden="true">
@@ -228,99 +224,105 @@
           <span class="section-label" data-i18n="exp.label">Career Path</span>
           <h2 id="exp-heading" class="section-title" data-i18n="exp.title">Work Experience</h2>
         </div>
-        <div class="timeline">
+        <div class="experience-showcase">
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-card-body">
-                <div class="timeline-header">
-                  <div class="company-logo company-logo-img">
-                    <img src="assets/images/logo-eglo.png" alt="EGLO Logo" />
-                  </div>
-                  <div>
-                    <h3 class="timeline-role" data-i18n="exp.eglo_role">Technical Sales Representative</h3>
-                    <span class="timeline-company">EGLO Leuchten GmbH · Morocco</span>
+          <!-- 1. EGLO Experience (Featured) -->
+          <div class="exp-block exp-featured reveal">
+            <div class="exp-content">
+              <div class="exp-header">
+                <div class="exp-company-logo">
+                  <img src="assets/images/logo-eglo.png" alt="EGLO Logo" />
+                </div>
+                <div class="exp-titles">
+                  <h3 class="exp-role" data-i18n="exp.eglo_role">Technical Sales Representative</h3>
+                  <div class="exp-meta">
+                    <span class="exp-company">EGLO Leuchten GmbH · Morocco</span>
+                    <span class="exp-date" data-i18n="exp.eglo_date">November 2019 — April 2025</span>
                   </div>
                 </div>
-                <span class="timeline-date" data-i18n="exp.eglo_date">November 2019 — April 2025</span>
-                <ul class="timeline-bullets">
-                  <li data-i18n="exp.eglo_b1">Spearheaded comprehensive sales management strategies and successfully expanded the active client portfolio across the Moroccan region through targeted B2B initiatives.</li>
-                  <li data-i18n="exp.eglo_b2">Orchestrated high-stakes negotiations with major stakeholders, successfully closing key commercial contracts and securing long-term partnerships.</li>
-                  <li data-i18n="exp.eglo_b3">Directed end-to-end after-sales service operations, quickly resolving technical issues to maintain exceptional customer satisfaction and retention rates.</li>
-                  <li data-i18n="exp.eglo_b4">Diligently managed CRM databases to maintain accurate client records, actively tracking order pipelines to forecast revenue and ensure timely deliveries.</li>
-                  <li data-i18n="exp.eglo_b5">Optimized inventory management and stock control processes, reducing discrepancies and ensuring a highly efficient product turnover rate.</li>
-                </ul>
               </div>
+              <ul class="exp-bullets">
+                <li><span class="bullet-text" data-i18n="exp.eglo_b1">Spearheaded comprehensive sales management strategies and successfully expanded the active client portfolio across the Moroccan region through targeted B2B initiatives.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.eglo_b2">Orchestrated high-stakes negotiations with major stakeholders, successfully closing key commercial contracts and securing long-term partnerships.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.eglo_b3">Directed end-to-end after-sales service operations, quickly resolving technical issues to maintain exceptional customer satisfaction and retention rates.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.eglo_b4">Diligently managed CRM databases to maintain accurate client records, actively tracking order pipelines to forecast revenue and ensure timely deliveries.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.eglo_b5">Optimized inventory management and stock control processes, reducing discrepancies and ensuring a highly efficient product turnover rate.</span></li>
+              </ul>
+            </div>
+            
+            <!-- Dual Image Showcase for EGLO only -->
+            <div class="exp-media-dual">
+              <img src="assets/images/hero-img-1.jpg" alt="Abdelaziz at EGLO" class="exp-img-prime" loading="lazy" />
+              <img src="assets/images/hero-img-2.jpg" alt="Additional EGLO Experience" class="exp-img-sub" loading="lazy" />
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-card-body">
-                <div class="timeline-header">
-                  <div class="company-logo company-logo-img">
-                    <img src="assets/images/logo-bim.png" alt="BIM Logo" />
-                  </div>
-                  <div>
-                    <h3 class="timeline-role" data-i18n="exp.bim_role">Store Associate / Cashier</h3>
-                    <span class="timeline-company">BİM Birleşik Mağazalar · Morocco</span>
+          <!-- 2. BIM Experience -->
+          <div class="exp-block reveal">
+            <div class="exp-content">
+              <div class="exp-header">
+                <div class="exp-company-logo">
+                  <img src="assets/images/logo-bim.png" alt="BIM Logo" />
+                </div>
+                <div class="exp-titles">
+                  <h3 class="exp-role" data-i18n="exp.bim_role">Store Associate / Cashier</h3>
+                  <div class="exp-meta">
+                    <span class="exp-company">BİM Birleşik Mağazalar · Morocco</span>
+                    <span class="exp-date" data-i18n="exp.bim_date">March 2018 — October 2018</span>
                   </div>
                 </div>
-                <span class="timeline-date" data-i18n="exp.bim_date">March 2018 — October 2018</span>
-                <ul class="timeline-bullets">
-                  <li data-i18n="exp.bim_b1">Coordinated daily product receiving, executed dynamic store displays, and organized stock to maximize accessibility and visual appeal for customers.</li>
-                  <li data-i18n="exp.bim_b2">Executed fast and precise cashiering operations, handling daily transactions securely while minimizing wait times during peak hours.</li>
-                  <li data-i18n="exp.bim_b3">Provided proactive and consistent support to store visitors, addressing inquiries and resolving issues to enhance the overall shopping experience.</li>
-                  <li data-i18n="exp.bim_b4">Conducted regular inventory audits and warehouse tracking to maintain optimal stock levels and prevent product shortages.</li>
-                </ul>
               </div>
+              <ul class="exp-bullets">
+                <li><span class="bullet-text" data-i18n="exp.bim_b1">Coordinated daily product receiving, executed dynamic store displays, and organized stock to maximize accessibility and visual appeal for customers.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.bim_b2">Executed fast and precise cashiering operations, handling daily transactions securely while minimizing wait times during peak hours.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.bim_b3">Provided proactive and consistent support to store visitors, addressing inquiries and resolving issues to enhance the overall shopping experience.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.bim_b4">Conducted regular inventory audits and warehouse tracking to maintain optimal stock levels and prevent product shortages.</span></li>
+              </ul>
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-card-body">
-                <div class="timeline-header">
-                  <div class="company-logo company-logo-img">
-                    <img src="assets/images/logo-onep.png" alt="ONEP Logo" />
-                  </div>
-                  <div>
-                    <h3 class="timeline-role" data-i18n="exp.onee_role">Intern — Final Year Project</h3>
-                    <span class="timeline-company">ONEE-Branche Eau · Morocco</span>
+          <!-- 3. ONEE Experience -->
+          <div class="exp-block reveal">
+            <div class="exp-content">
+              <div class="exp-header">
+                <div class="exp-company-logo">
+                  <img src="assets/images/logo-onep.png" alt="ONEP Logo" />
+                </div>
+                <div class="exp-titles">
+                  <h3 class="exp-role" data-i18n="exp.onee_role">Intern — Final Year Project</h3>
+                  <div class="exp-meta">
+                    <span class="exp-company">ONEE-Branche Eau · Morocco</span>
+                    <span class="exp-date" data-i18n="exp.onee_date">March 2017</span>
                   </div>
                 </div>
-                <span class="timeline-date" data-i18n="exp.onee_date">March 2017</span>
-                <ul class="timeline-bullets">
-                  <li data-i18n="exp.onee_b1">Assisted the finance team with comprehensive accounting management, ensuring accurate budget tracking and financial data entry.</li>
-                  <li data-i18n="exp.onee_b2">Supported the purchasing department by coordinating with external suppliers to verify orders, delivery schedules, and invoicing details.</li>
-                  <li data-i18n="exp.onee_b3">Streamlined inventory records and maintained detailed warehouse documentation to support transparent and efficient logistical operations.</li>
-                </ul>
               </div>
+              <ul class="exp-bullets">
+                <li><span class="bullet-text" data-i18n="exp.onee_b1">Assisted the finance team with comprehensive accounting management, ensuring accurate budget tracking and financial data entry.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.onee_b2">Supported the purchasing department by coordinating with external suppliers to verify orders, delivery schedules, and invoicing details.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.onee_b3">Streamlined inventory records and maintained detailed warehouse documentation to support transparent and efficient logistical operations.</span></li>
+              </ul>
             </div>
           </div>
 
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-card-body">
-                <div class="timeline-header">
-                  <div class="company-logo company-logo-img">
-                    <img src="assets/images/logo-tanfisc.png" alt="TAN-FISC Logo" />
-                  </div>
-                  <div>
-                    <h3 class="timeline-role" data-i18n="exp.tf_role">Accounting Intern</h3>
-                    <span class="timeline-company">TAN-FISC · Tan-Tan, Morocco</span>
+          <!-- 4. TAN-FISC Experience -->
+          <div class="exp-block reveal">
+            <div class="exp-content">
+              <div class="exp-header">
+                <div class="exp-company-logo">
+                  <img src="assets/images/logo-tanfisc.png" alt="TAN-FISC Logo" />
+                </div>
+                <div class="exp-titles">
+                  <h3 class="exp-role" data-i18n="exp.tf_role">Accounting Intern</h3>
+                  <div class="exp-meta">
+                    <span class="exp-company">TAN-FISC · Tan-Tan, Morocco</span>
+                    <span class="exp-date" data-i18n="exp.tf_date">July 2016</span>
                   </div>
                 </div>
-                <span class="timeline-date" data-i18n="exp.tf_date">July 2016</span>
-                <ul class="timeline-bullets">
-                  <li data-i18n="exp.tf_b1">Facilitated the preparation of monthly financial reports and ensured the accurate registration of incoming and outgoing invoices.</li>
-                  <li data-i18n="exp.tf_b2">Managed essential administrative documentation, improving the organization of physical and digital filings for quick retrieval and compliance.</li>
-                </ul>
               </div>
+              <ul class="exp-bullets">
+                <li><span class="bullet-text" data-i18n="exp.tf_b1">Facilitated the preparation of monthly financial reports and ensured the accurate registration of incoming and outgoing invoices.</span></li>
+                <li><span class="bullet-text" data-i18n="exp.tf_b2">Managed essential administrative documentation, improving the organization of physical and digital filings for quick retrieval and compliance.</span></li>
+              </ul>
             </div>
           </div>
 

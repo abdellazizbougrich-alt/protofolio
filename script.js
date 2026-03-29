@@ -598,7 +598,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.25 });
 
-  document.querySelectorAll('.timeline-card').forEach(card => bulletObserver.observe(card));
+  const timelineCards = document.querySelectorAll('.timeline-card');
+  timelineCards.forEach(card => bulletObserver.observe(card));
+
+  // ----------------------------------------------------------
+  // 10. MOBILE TIMELINE ACCORDION
+  // ----------------------------------------------------------
+  const experienceItems = document.querySelectorAll('.exp-bullets li');
+
+  experienceItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Only trigger on mobile/tablet widths
+      if (window.innerWidth <= 768) {
+        item.classList.toggle('is-expanded');
+      }
+    });
+  });
 
   // Language bars animation
   const langObserver = new IntersectionObserver((entries, observer) => {
