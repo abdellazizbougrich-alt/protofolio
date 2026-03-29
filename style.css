@@ -577,64 +577,106 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   flex-shrink: 0;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   position: relative;
+  /* Wider column for the portrait */
+  width: clamp(300px, 38vw, 480px);
+}
+
+/* Animated bottom accent bar — the signature strip from the reference */
+.hero-image-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #7c3aed, #3b82f6, #06b6d4);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.8), 0 0 60px rgba(59, 130, 246, 0.4);
+  z-index: 3;
+  animation: accent-bar-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes accent-bar-pulse {
+  0%   { opacity: 0.7; width: 70%; box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+  100% { opacity: 1;   width: 88%; box-shadow: 0 0 50px rgba(99, 102, 241, 1), 0 0 80px rgba(59,130,246,0.5); }
 }
 
 .hero-image-composition {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  height: 380px; 
+  /* Tall portrait — fills most of the hero height */
+  height: clamp(420px, 65vh, 620px);
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
+/* ══ Portrait container: Clean, Bright, Obvious ══ */
 .hero-img-wrapper {
   width: 100%;
   height: 100%;
   position: relative;
-  border-radius: 50%; /* Perfect Circle */
-  /* Creates a classy double ring effect */
-  padding: 8px;
-  background: var(--bg-card);
-  border: 2px solid var(--border-color);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  overflow: hidden;
+  border-radius: 2rem; /* Soft, attractive rounded rectangle */
+  border: 4px solid var(--bg-card); /* Clean frame that matches theme */
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), 0 0 30px rgba(59, 130, 246, 0.05);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+  z-index: 2;
+  background: var(--bg-card); /* In case picture is transparent */
 }
 
+.hero-img-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+/* ══ Image: Fully visible, no dark filters ══ */
 .hero-img-fullscreen {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center; /* keep face centered */
-  border-radius: 50%;
+  object-position: center top;
   display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Elegant ambient glow behind composition */
+.hero-img-wrapper:hover .hero-img-fullscreen {
+  transform: scale(1.04);
+}
+
+/* Light theme overrides: Soft bright shadow */
+[data-theme="light"] .hero-img-wrapper {
+  border-color: #ffffff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 20px rgba(59, 130, 246, 0.05);
+}
+
+[data-theme="light"] .hero-img-wrapper:hover {
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15), 0 0 30px rgba(59, 130, 246, 0.15);
+}
+
+/* Strong ambient glow behind the portrait — matches reference */
 .hero-image-wrap::before {
   content: '';
   position: absolute;
-  inset: -20px;
-  background: var(--accent);
-  filter: blur(80px);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 50%;
+  background: radial-gradient(ellipse at center bottom, rgba(99, 102, 241, 0.35) 0%, rgba(59, 130, 246, 0.15) 50%, transparent 80%);
+  filter: blur(40px);
   border-radius: 50%;
-  opacity: 0.15;
-  z-index: 1;
-  animation: float-glow 8s ease-in-out infinite alternate;
-}
-
-.hero-img-wrapper:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--accent);
-  box-shadow: 0 30px 60px rgba(37, 99, 235, 0.2);
+  z-index: 0;
+  animation: float-glow 6s ease-in-out infinite alternate;
 }
 
 @keyframes float-glow {
-  0% { transform: scale(0.9) translateY(0); opacity: 0.1; }
-  100% { transform: scale(1.05) translateY(-15px); opacity: 0.25; }
+  0%   { opacity: 0.6; transform: translateX(-50%) scaleX(0.9); }
+  100% { opacity: 1.0; transform: translateX(-50%) scaleX(1.1) translateY(-10px); }
 }
 
 .hero-greeting {
@@ -2178,6 +2220,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   .contact-icon-pill {
     min-width: 180px;
   }
+
+  /* Hero portrait: shrink width slightly on tablet */
+  .hero-image-wrap {
+    width: clamp(260px, 40vw, 400px);
+  }
+  .hero-image-composition {
+    height: clamp(380px, 55vh, 520px);
+  }
 }
 
 /* ============================================================
@@ -2262,10 +2312,24 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
   .hero-socials { justify-content: center; }
 
+  /* Portrait hero on mobile: smaller, full-width column */
+  .hero-image-wrap {
+    width: clamp(220px, 80vw, 340px);
+    align-self: center;
+  }
   .hero-image-composition {
-    width: clamp(240px, 78vw, 360px);
-    height: clamp(310px, 88vw, 440px);
+    width: 100%;
+    height: clamp(280px, 75vw, 400px);
     margin: 0 auto;
+  }
+  /* Reduce mask fade on mobile so face is fully visible */
+  .hero-img-wrapper {
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, black 5%, black 80%, transparent 100%),
+      linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, black 5%, black 80%, transparent 100%),
+      linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
   }
 
   /* Hide the scroll indicator on mobile to free vertical space */
@@ -2873,6 +2937,7 @@ body.modal-open { overflow: hidden; }
   .languages-grid-v2 { grid-template-columns: repeat(2, 1fr); }
 }
 
+
 @media (max-width: 500px) {
   .languages-grid-v2 { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
   .lang-card-v2 { padding: 1.2rem 1rem 1.4rem; }
@@ -2880,7 +2945,7 @@ body.modal-open { overflow: hidden; }
 }
 
 /* ============================================================
-   RADICAL EXPERIENCE SHOWCASE
+   NEW EXPERIENCE SHOWCASE (CINEMATIC)
    ============================================================ */
 .experience-showcase {
   display: flex;
@@ -2889,184 +2954,365 @@ body.modal-open { overflow: hidden; }
   width: 100%;
 }
 
-.exp-block {
+/* ══ 1. Featured Cinematic Block (EGLO) ══ */
+.exp-cinema {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
   background: var(--bg-card);
   border-radius: 2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-  padding: 3.5rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
   border: 1px solid var(--border-subtle);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.exp-block:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+.exp-cinema:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
-.exp-featured {
-  grid-template-columns: 1.2fr 1fr;
-  align-items: stretch;
-  padding: 0;
-  overflow: hidden;
-}
-
-.exp-featured .exp-content {
-  padding: 3.5rem;
+.exp-cinema-content {
+  padding: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.exp-header {
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-  margin-bottom: 2.5rem;
-}
-
-.exp-company-logo {
-  width: 75px;
-  height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  border-radius: 18px;
-  padding: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.exp-company-logo img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.exp-role {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.35rem;
-}
-
-.exp-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.exp-company {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.exp-date {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-.exp-bullets {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-}
-
-.exp-bullets li {
   position: relative;
-  padding-left: 2.2rem;
+  z-index: 2;
+}
+
+.exp-cinema-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.exp-cinema-logo {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  object-fit: contain;
+}
+
+.exp-cinema-tag {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.exp-cinema-role {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.exp-cinema-company {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.exp-cinema-bullets {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.exp-cinema-bullets li {
+  position: relative;
+  padding-left: 2rem;
   font-size: 1.05rem;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
 
-.exp-bullets li::before {
-  content: '✦';
+.exp-cinema-bullets li::before {
+  content: '✓';
   position: absolute;
   left: 0;
   top: 2px;
   color: var(--accent);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 900;
 }
 
-/* Dual image collage for EGLO */
-.exp-media-dual {
+/* ══ Bullet Animation States ══ */
+.bullet-hidden {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.bullet-visible {
+  opacity: 1;
+  transform: translateX(0);
+  /* Cubic-bezier for a smooth snap-into-place feel coming from the right */
+  transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Subtle hover style effect on fonts */
+.exp-cinema-bullets li, .exp-card-bullets li {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.exp-cinema-bullets li:hover, .exp-card-bullets li:hover {
+  color: var(--text-primary);
+}
+
+/* ══ Cinematic Mosaic Images (Borderless) ══ */
+.exp-cinema-mosaic {
   position: relative;
-  background: linear-gradient(135deg, var(--bg-primary), var(--bg-card));
-  display: flex;
   width: 100%;
   height: 100%;
   min-height: 500px;
-  padding: 3rem;
+  background: var(--bg-primary); 
+  overflow: hidden;
+}
+
+/* Completely borderless images using masking/shadows for separation */
+.exp-mosaic-img {
+  position: absolute;
+  border-radius: 0;
+}
+
+.exp-mosaic-main {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%);
+  mask-image: linear-gradient(to right, transparent, black 15%);
+}
+
+.exp-mosaic-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.exp-mosaic-accent {
+  bottom: 8%;
+  left: -8%; 
+  width: 55%;
+  height: 75%;
+  border-radius: 12px;
+  box-shadow: 20px 20px 50px rgba(0,0,0,0.5); /* Deep shadow provides contrast instead of a border */
+  overflow: hidden;
+}
+
+.exp-mosaic-accent img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.exp-cinema:hover .exp-mosaic-main img {
+  transform: scale(1.05);
+}
+
+.exp-cinema:hover .exp-mosaic-accent img {
+  transform: scale(1.05) translate(5px, -5px);
+}
+
+/* Ambient gradient to tie right side into the dark theme seamlessly */
+.exp-mosaic-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bg-card) 0%, transparent 20%, transparent 60%, rgba(0,0,0,0.2) 100%);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .exp-mosaic-overlay {
+  background: linear-gradient(to right, var(--bg-card) 0%, transparent 25%, transparent 60%, rgba(99, 102, 241, 0.1) 100%);
+}
+
+/* ══ 2. Compact Horizontal Cards (BIM, ONEE, TAN-FISC) ══ */
+.exp-cards-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.exp-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg-card);
+  border-radius: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+}
+
+/* Horizontal color line on the left */
+.exp-card-accent {
+  width: 8px;
+  background: linear-gradient(to bottom, var(--accent), #06b6d4);
+  flex-shrink: 0;
+}
+
+.exp-card-logo {
+  width: 130px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid var(--border-subtle);
+  background: rgba(0,0,0,0.02);
+  padding: 1.5rem;
+  border-right: 1px solid var(--border-subtle);
 }
 
-.exp-img-prime {
-  width: 80%;
-  height: auto;
+[data-theme="dark"] .exp-card-logo { 
+  background: rgba(255,255,255,0.02); 
+}
+
+.exp-card-logo img {
+  max-width: 65px;
+  max-height: 65px;
+  object-fit: contain;
+  filter: grayscale(80%) opacity(0.85); /* Sophisticated muted look */
+  transition: all 0.3s ease;
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.exp-card:hover .exp-card-logo img {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+
+.exp-card-body {
+  padding: 2.2rem 2.5rem;
+  flex-grow: 1;
+}
+
+.exp-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.exp-card-role {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.exp-card-date {
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.35rem 0.85rem;
   border-radius: 20px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-  z-index: 2;
-  border: 4px solid var(--bg-card);
-  transition: transform 0.6s ease;
 }
 
-.exp-img-sub {
+.exp-card-company {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.exp-card-bullets {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.exp-card-bullets li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.exp-card-bullets li::before {
+  content: '▸';
   position: absolute;
-  bottom: 8%;
-  right: 6%;
-  width: 55%;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-  z-index: 3;
-  border: 3px solid var(--bg-card);
-  transition: transform 0.6s ease;
+  left: 0;
+  top: 1px;
+  color: var(--accent);
+  font-size: 1.15rem;
 }
 
-.exp-media-dual:hover .exp-img-prime {
-  transform: scale(1.02) rotate(-1deg);
-}
-
-.exp-media-dual:hover .exp-img-sub {
-  transform: scale(1.05) translate(-10px, -10px);
-}
-
-/* Responsive */
+/* ══ Responsive Breakpoints ══ */
 @media (max-width: 1100px) {
-  .exp-featured {
+  .exp-cinema {
     grid-template-columns: 1fr;
   }
-  .exp-media-dual {
-    min-height: 480px;
-    border-left: none;
-    border-top: 1px solid var(--border-subtle);
+  .exp-cinema-mosaic {
+    min-height: 400px;
+    order: -1; /* Image appears on top on mobile/tablet */
+  }
+  .exp-mosaic-accent {
+    left: 5%;
+    bottom: -8%; 
+    width: 45%;
+  }
+  .exp-mosaic-main {
+    /* Smooth blend from image into content at the bottom */
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+    mask-image: linear-gradient(to bottom, black 80%, transparent);
+  }
+  .exp-mosaic-overlay {
+    background: linear-gradient(to bottom, transparent 60%, var(--bg-card) 100%);
   }
 }
 
 @media (max-width: 768px) {
-  .exp-block {
-    padding: 2rem;
+  .exp-cinema-content {
+    padding: 2.5rem 2rem;
   }
-  .exp-featured .exp-content {
-    padding: 2rem;
+  .exp-cinema-role {
+    font-size: 1.6rem;
   }
-  .exp-header {
+  
+  .exp-card {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
   }
-  .exp-bullets li {
-    font-size: 1rem;
+  .exp-card-accent {
+    width: 100%;
+    height: 8px;
   }
-  .exp-media-dual {
-    min-height: 380px;
+  .exp-card-logo {
+    width: 100%;
+    height: auto;
     padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .exp-card-body {
+    padding: 1.8rem;
+  }
+  .exp-card-head {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 }

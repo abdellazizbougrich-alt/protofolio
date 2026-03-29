@@ -574,32 +574,37 @@ document.addEventListener('DOMContentLoaded', () => {
   badgeClouds.forEach(cloud => skillsObserver.observe(cloud));
 
   // ----------------------------------------------------------
-  // Bullet slide-up animation for Work Experience timeline
+  // Bullet slide-right animation for Work Experience
   // ----------------------------------------------------------
   const bulletObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
 
       const card = entry.target;
-      const bullets = card.querySelectorAll('.timeline-bullets li');
+      const bullets = card.querySelectorAll('.exp-cinema-bullets li, .exp-card-bullets li');
 
-      // Mark each bullet hidden before animating
-      bullets.forEach(li => li.classList.add('bullet-hidden'));
-
-      // Stagger reveal from first to last
+      // Stagger reveal from hidden state to visible state
       bullets.forEach((li, i) => {
         setTimeout(() => {
           li.classList.remove('bullet-hidden');
           li.classList.add('bullet-visible');
-        }, i * 90); // 90ms stagger per bullet
+        }, i * 140 + 50); // Meticulously tuned stagger to match the right-in transition
       });
 
       observer.unobserve(card);
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.15 });
 
-  const timelineCards = document.querySelectorAll('.timeline-card');
-  timelineCards.forEach(card => bulletObserver.observe(card));
+  // Target the new cinematic and card blocks
+  const expBlocks = document.querySelectorAll('.exp-cinema, .exp-card');
+  expBlocks.forEach(card => {
+    // Hide all bullets immediately on load so they are ready to animate in
+    const bullets = card.querySelectorAll('.exp-cinema-bullets li, .exp-card-bullets li');
+    bullets.forEach(li => li.classList.add('bullet-hidden'));
+    
+    // Begin observing
+    bulletObserver.observe(card);
+  });
 
   // ----------------------------------------------------------
   // 10. MOBILE TIMELINE ACCORDION
