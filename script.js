@@ -101,26 +101,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'exp.title': 'Work Experience',
       'exp.eglo_role': 'Technical Sales Representative',
       'exp.eglo_date': 'November 2019 — April 2025',
-      'exp.eglo_b1': 'Led sales management and client portfolio development across Morocco',
-      'exp.eglo_b2': 'Conducted high-stakes negotiations and closed key commercial contracts',
-      'exp.eglo_b3': 'Managed after-sales service, ensuring high customer satisfaction rates',
-      'exp.eglo_b4': 'Maintained accurate CRM records and tracked order pipelines',
-      'exp.eglo_b5': 'Inventory management and stock control optimization',
+      'exp.eglo_b1': 'Spearheaded comprehensive sales management strategies and successfully expanded the active client portfolio across the Moroccan region through targeted B2B initiatives.',
+      'exp.eglo_b2': 'Orchestrated high-stakes negotiations with major stakeholders, successfully closing key commercial contracts and securing long-term partnerships.',
+      'exp.eglo_b3': 'Directed end-to-end after-sales service operations, quickly resolving technical issues to maintain exceptional customer satisfaction and retention rates.',
+      'exp.eglo_b4': 'Diligently managed CRM databases to maintain accurate client records, actively tracking order pipelines to forecast revenue and ensure timely deliveries.',
+      'exp.eglo_b5': 'Optimized inventory management and stock control processes, reducing discrepancies and ensuring a highly efficient product turnover rate.',
       'exp.bim_role': 'Store Associate / Cashier',
       'exp.bim_date': 'March 2018 — October 2018',
-      'exp.bim_b1': 'Managed product receiving, display, and stock organization',
-      'exp.bim_b2': 'Conducted cashiering operations with precision and speed',
-      'exp.bim_b3': 'Delivered consistent customer support and issue resolution',
-      'exp.bim_b4': 'Performed inventory management and warehouse tracking',
+      'exp.bim_b1': 'Coordinated daily product receiving, executed dynamic store displays, and organized stock to maximize accessibility and visual appeal for customers.',
+      'exp.bim_b2': 'Executed fast and precise cashiering operations, handling daily transactions securely while minimizing wait times during peak hours.',
+      'exp.bim_b3': 'Provided proactive and consistent support to store visitors, addressing inquiries and resolving issues to enhance the overall shopping experience.',
+      'exp.bim_b4': 'Conducted regular inventory audits and warehouse tracking to maintain optimal stock levels and prevent product shortages.',
       'exp.onee_role': 'Intern — Final Year Project',
       'exp.onee_date': 'March 2017',
-      'exp.onee_b1': 'Supported accounting management and budget tracking',
-      'exp.onee_b2': 'Assisted purchasing department with supplier coordination',
-      'exp.onee_b3': 'Managed inventory records and warehouse documentation',
+      'exp.onee_b1': 'Assisted the finance team with comprehensive accounting management, ensuring accurate budget tracking and financial data entry.',
+      'exp.onee_b2': 'Supported the purchasing department by coordinating with external suppliers to verify orders, delivery schedules, and invoicing details.',
+      'exp.onee_b3': 'Streamlined inventory records and maintained detailed warehouse documentation to support transparent and efficient logistical operations.',
       'exp.tf_role': 'Accounting Intern',
       'exp.tf_date': 'July 2016',
-      'exp.tf_b1': 'Supported financial reporting and invoice registration',
-      'exp.tf_b2': 'Handled administrative documentation and filings',
+      'exp.tf_b1': 'Facilitated the preparation of monthly financial reports and ensured the accurate registration of incoming and outgoing invoices.',
+      'exp.tf_b2': 'Managed essential administrative documentation, improving the organization of physical and digital filings for quick retrieval and compliance.',
       // EDUCATION
       'edu.label': 'Academic Background',
       'edu.title': 'Education',
@@ -220,26 +220,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'exp.title': 'Expériences professionnelles',
       'exp.eglo_role': 'Représentant commercial technique',
       'exp.eglo_date': 'Novembre 2019 — Avril 2025',
-      'exp.eglo_b1': 'Dirigé la gestion commerciale et le développement du portefeuille clients au Maroc',
-      'exp.eglo_b2': 'Conduit des négociations importantes et conclu des contrats commerciaux clés',
-      'exp.eglo_b3': 'Géré le service après-vente, assurant des taux élevés de satisfaction client',
-      'exp.eglo_b4': 'Maintenu des enregistrements CRM précis et suivi les pipelines de commandes',
-      'exp.eglo_b5': 'Optimisation de la maîtrise des stocks et gestion des inventaires pour assurer une rotation efficace des produits',
+      'exp.eglo_b1': 'Dirigé des stratégies globales de gestion commerciale et étendu avec succès le portefeuille de clients actifs sur la région marocaine grâce à des initiatives B2B ciblées.',
+      'exp.eglo_b2': 'Orchestré des négociations à fort enjeu avec des partenaires majeurs, concluant avec succès des contrats commerciaux clés et sécurisant des partenariats à long terme.',
+      'exp.eglo_b3': 'Dirigé les opérations du service après-vente de bout en bout, résolvant rapidement les problèmes techniques pour maintenir des taux de satisfaction et de fidélisation exceptionnels.',
+      'exp.eglo_b4': 'Géré rigoureusement les bases de données CRM pour maintenir des dossiers clients précis, assurant un suivi actif des pipelines de commandes pour prévoir les revenus et garantir des livraisons ponctuelles.',
+      'exp.eglo_b5': 'Optimisé les processus de gestion des stocks et de contrôle d\'inventaire, réduisant les écarts et assurant un taux de rotation des produits hautement efficace.',
       'exp.bim_role': 'Employé de magasin / Caissier',
       'exp.bim_date': 'Mars 2018 — Octobre 2018',
-      'exp.bim_b1': 'Géré la réception, l\'exposition et l\'organisation des stocks de produits',
-      'exp.bim_b2': 'Effectué les opérations de caisse avec précision et rapidité',
-      'exp.bim_b3': 'Assuré un soutien client constant et la résolution des problèmes',
-      'exp.bim_b4': 'Réalisé la gestion des stocks et le suivi des entrepôts',
+      'exp.bim_b1': 'Coordonné la réception quotidienne des produits, organisé des présentations dynamiques en magasin et optimisé l\'organisation des stocks pour maximiser l\'accessibilité pour les clients.',
+      'exp.bim_b2': 'Effectué des opérations de caisse rapides et précises, gérant les transactions quotidiennes en toute sécurité tout en minimisant les temps d\'attente lors des pics d\'affluence.',
+      'exp.bim_b3': 'Fourni un soutien constant et proactif aux visiteurs du magasin, répondant aux demandes et résolvant les problèmes pour améliorer l\'expérience d\'achat globale.',
+      'exp.bim_b4': 'Réalisé des audits d\'inventaire réguliers et assuré le suivi de l\'entrepôt pour maintenir des niveaux de stock optimaux et prévenir les ruptures de produits.',
       'exp.onee_role': 'Stagiaire — Projet de fin d\'études',
       'exp.onee_date': 'Mars 2017',
-      'exp.onee_b1': 'Soutenu la gestion comptable et le suivi budgétaire',
-      'exp.onee_b2': 'Assisté le département des achats dans la coordination des fournisseurs',
-      'exp.onee_b3': 'Géré les enregistrements de stocks et la documentation d\'entrepôt',
+      'exp.onee_b1': 'Assisté l\'équipe financière dans la gestion comptable globale, garantissant un suivi budgétaire précis et une saisie rigoureuse des données financières.',
+      'exp.onee_b2': 'Soutenu le département des achats en se coordonnant avec les fournisseurs externes pour vérifier les commandes, les calendriers de livraison et les détails de facturation.',
+      'exp.onee_b3': 'Rationalisé les registres d\'inventaire et maintenu une documentation détaillée de l\'entrepôt pour soutenir des opérations logistiques transparentes et efficaces.',
       'exp.tf_role': 'Stagiaire en comptabilité',
       'exp.tf_date': 'Juillet 2016',
-      'exp.tf_b1': 'Soutenu le reporting financier et l\'enregistrement des factures',
-      'exp.tf_b2': 'Géré la documentation et les classements administratifs',
+      'exp.tf_b1': 'Facilité la préparation des rapports financiers mensuels et assuré l\'enregistrement précis des factures entrantes et sortantes.',
+      'exp.tf_b2': 'Géré la documentation administrative essentielle, améliorant l\'organisation des archives physiques et numériques pour une recherche rapide et garantir la conformité.',
       // EDUCATION
       'edu.label': 'Parcours académique',
       'edu.title': 'Formation',
@@ -339,26 +339,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'exp.title': 'Esperienza lavorativa',
       'exp.eglo_role': 'Rappresentante vendite tecnico',
       'exp.eglo_date': 'Novembre 2019 — Aprile 2025',
-      'exp.eglo_b1': 'Gestito le attività commerciali e sviluppato il portafoglio clienti in Marocco',
-      'exp.eglo_b2': 'Condotto trattative complesse e concluso contratti commerciali chiave',
-      'exp.eglo_b3': 'Gestito il servizio post-vendita, garantendo alti tassi di soddisfazione del cliente',
-      'exp.eglo_b4': 'Mantenuto registrazioni CRM accurate e monitorato le pipeline degli ordini',
-      'exp.eglo_b5': 'Ottimizzazione della gestione del magazzino e del controllo delle scorte per garantire una rotazione efficiente dei prodotti',
+      'exp.eglo_b1': 'Guidato strategie di gestione delle vendite ad ampio raggio e ampliato con successo il portafoglio di clienti attivi nella regione marocchina attraverso iniziative B2B mirate.',
+      'exp.eglo_b2': 'Orchestrato negoziazioni ad alto rischio con i principali stakeholder, concludendo con successo contratti commerciali chiave e garantendo partnership a lungo termine.',
+      'exp.eglo_b3': 'Diretto le operazioni del servizio post-vendita end-to-end, risolvendo rapidamente i problemi tecnici per mantenere tassi eccezionali di soddisfazione e fidelizzazione dei clienti.',
+      'exp.eglo_b4': 'Gestito diligentemente i database CRM per mantenere registri clienti accurati, tracciando attivamente le pipeline degli ordini per prevedere i ricavi e garantire consegne puntuali.',
+      'exp.eglo_b5': 'Ottimizzato i processi di gestione dell\'inventario e controllo delle scorte, riducendo le discrepanze e garantendo un tasso di rotazione dei prodotti altamente efficiente.',
       'exp.bim_role': 'Addetto vendite / Cassiere',
       'exp.bim_date': 'Marzo 2018 — Ottobre 2018',
-      'exp.bim_b1': 'Gestito il ricevimento, l\'esposizione e l\'organizzazione dei prodotti in stock',
-      'exp.bim_b2': 'Effettuato operazioni di cassa con precisione e rapidità',
-      'exp.bim_b3': 'Fornito supporto clienti costante e risoluzione dei problemi',
-      'exp.bim_b4': 'Eseguito la gestione dell\'inventario e il monitoraggio del magazzino',
+      'exp.bim_b1': 'Coordinato la ricezione quotidiana dei prodotti, eseguito esposizioni dinamiche in negozio e organizzato le scorte per massimizzare l\'accessibilità e l\'attrattiva visiva per i clienti.',
+      'exp.bim_b2': 'Eseguito operazioni di cassa rapide e precise, gestendo le transazioni quotidiane in modo sicuro e riducendo al minimo i tempi di attesa durante le ore di punta.',
+      'exp.bim_b3': 'Fornito un supporto coerente e proattivo ai visitatori del negozio, affrontando le richieste e risolvendo tempestivamente i problemi per migliorare l\'esperienza di acquisto complessiva.',
+      'exp.bim_b4': 'Condotto regolari controlli dell\'inventario e tracciamento del magazzino per mantenere livelli di scorte ottimali e prevenire l\'esaurimento dei prodotti.',
       'exp.onee_role': 'Stagista — Progetto di fine anno',
       'exp.onee_date': 'Marzo 2017',
-      'exp.onee_b1': 'Supportato la gestione contabile e il monitoraggio del budget',
-      'exp.onee_b2': 'Assistito il dipartimento acquisti nel coordinamento dei fornitori',
-      'exp.onee_b3': 'Gestito i registri di inventario e la documentazione del magazzino',
+      'exp.onee_b1': 'Assistito il team finanziario con una gestione contabile completa, garantendo un tracciamento accurato del budget e l\'inserimento preciso dei dati finanziari.',
+      'exp.onee_b2': 'Supportato il dipartimento acquisti coordinandosi con fornitori esterni per verificare ordini, tempistiche di consegna e dettagli di fatturazione.',
+      'exp.onee_b3': 'Semplificato i registri di inventario e mantenuto una documentazione di magazzino dettagliata per supportare operazioni logistiche trasparenti ed efficienti.',
       'exp.tf_role': 'Stagista in contabilità',
       'exp.tf_date': 'Luglio 2016',
-      'exp.tf_b1': 'Supportato la reportistica finanziaria e la registrazione delle fatture',
-      'exp.tf_b2': 'Gestito la documentazione e gli archivi amministrativi',
+      'exp.tf_b1': 'Facilitato la preparazione dei report finanziari mensili e garantito l\'accurata registrazione delle fatture in entrata e in uscita.',
+      'exp.tf_b2': 'Gestito la documentazione amministrativa essenziale, migliorando l\'organizzazione degli archivi fisici e digitali per un rapido recupero e per garantire la conformità.',
       // EDUCATION
       'edu.label': 'Percorso accademico',
       'edu.title': 'Formazione',
@@ -572,6 +572,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const badgeClouds = document.querySelectorAll('.badge-cloud');
   badgeClouds.forEach(cloud => skillsObserver.observe(cloud));
+
+  // ----------------------------------------------------------
+  // Bullet slide-up animation for Work Experience timeline
+  // ----------------------------------------------------------
+  const bulletObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const card = entry.target;
+      const bullets = card.querySelectorAll('.timeline-bullets li');
+
+      // Mark each bullet hidden before animating
+      bullets.forEach(li => li.classList.add('bullet-hidden'));
+
+      // Stagger reveal from first to last
+      bullets.forEach((li, i) => {
+        setTimeout(() => {
+          li.classList.remove('bullet-hidden');
+          li.classList.add('bullet-visible');
+        }, i * 90); // 90ms stagger per bullet
+      });
+
+      observer.unobserve(card);
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('.timeline-card').forEach(card => bulletObserver.observe(card));
 
   // Language bars animation
   const langObserver = new IntersectionObserver((entries, observer) => {
