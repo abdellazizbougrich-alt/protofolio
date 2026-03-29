@@ -3329,3 +3329,436 @@ body.modal-open { overflow: hidden; }
     margin-bottom: 0.75rem;
   }
 }
+
+/* ============================================================
+   RESPONSIVE — Hero Portrait & Work Experience (New Additions)
+   ============================================================ */
+
+/* ── Tablet & below (≤1100px) ── */
+@media (max-width: 1100px) {
+
+  /* Hero layout: side-by-side → stacked */
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-greeting {
+    justify-content: center;
+  }
+
+  .hero-tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-socials {
+    justify-content: center;
+  }
+
+  /* Portrait column becomes full-width, shorter height */
+  .hero-image-wrap {
+    width: clamp(260px, 70vw, 400px);
+    order: -1; /* Portrait on top, text below */
+  }
+
+  .hero-image-composition {
+    height: clamp(320px, 50vh, 480px);
+  }
+
+  /* Shoulder fade: start higher on tablet so it stays elegant */
+  .hero-img-wrapper {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  }
+}
+
+/* ── Mobile (≤768px) ── */
+@media (max-width: 768px) {
+
+  /* Tighter hero padding */
+  .hero-content {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  /* Smaller portrait column */
+  .hero-image-wrap {
+    width: clamp(220px, 75vw, 340px);
+  }
+
+  .hero-image-composition {
+    height: clamp(260px, 45vh, 380px);
+  }
+
+  /* Name should never overflow on small screens */
+  .hero-name {
+    white-space: normal;
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  /* Shoulder fade earlier on mobile so image never looks cropped */
+  .hero-img-wrapper {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%);
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.35));
+  }
+
+  /* Disable hover float on touch screens — no pointer to hover with */
+  .hero-img-wrapper:hover {
+    transform: none;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.35));
+  }
+
+  /* Accent bar below portrait scales down */
+  .hero-image-wrap::after {
+    width: 70%;
+    height: 4px;
+  }
+}
+
+/* ── Small phones (≤480px) ── */
+@media (max-width: 480px) {
+
+  .hero-image-wrap {
+    width: clamp(180px, 85vw, 280px);
+  }
+
+  .hero-image-composition {
+    height: clamp(220px, 42vh, 320px);
+  }
+
+  /* Shoulder fade even more pronounced on tiny screens */
+  .hero-img-wrapper {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  }
+
+  /* Work experience text scaling */
+  .exp-cinema-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .exp-cinema-role {
+    font-size: 1.3rem;
+  }
+
+  .exp-cinema-bullets li {
+    font-size: 0.95rem;
+  }
+
+  .exp-card-body {
+    padding: 1.25rem;
+  }
+
+  .exp-card-role {
+    font-size: 1.15rem;
+  }
+
+  /* Hide scroll nudge on tiny screens — takes up precious space */
+  .hero-scroll-indicator {
+    display: none;
+  }
+}
+
+/* ============================================================
+   ADDITIONAL MOBILE RESPONSIVE IMPROVEMENTS
+   ============================================================ */
+
+/* ── Fix hero name white-space at tablet (≤1100px) ── */
+@media (max-width: 1100px) {
+  .hero-name {
+    white-space: normal;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+  }
+}
+
+/* ── Experience cinema mosaic shrinks on mobile ── */
+@media (max-width: 768px) {
+  .exp-cinema-mosaic {
+    min-height: 260px;
+    max-height: 320px;
+  }
+
+  .exp-cinema-badge {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .exp-cinema-tag {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .exp-cinema-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .exp-cinema-company {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Experience cards: keep logo side compact on mobile */
+  .exp-card-logo {
+    justify-content: flex-start;
+    padding: 1.25rem 1.5rem;
+  }
+
+  /* Experience card role & date stacked vertically */
+  .exp-card-role {
+    font-size: 1.2rem;
+  }
+
+  .exp-card-company {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .exp-card-date {
+    font-size: 0.8rem;
+    padding: 0.28rem 0.7rem;
+  }
+
+  /* About grid single column on mobile — ensure it stacks cleanly */
+  .about-grid {
+    gap: 2rem;
+  }
+
+  /* Info items wrap on very small screens */
+  .info-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .info-label {
+    min-width: unset;
+  }
+
+  /* Ensure section header doesn't eat too much space */
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  /* Skills blocks take up full width cleanly */
+  .skills-grid {
+    gap: 1.5rem;
+  }
+
+  /* Language section spacing */
+  .languages-section {
+    margin-top: 2rem;
+  }
+
+  .lang-section-header {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ── Extra responsive for cinema mosaic on very small mobile ── */
+@media (max-width: 500px) {
+  .exp-cinema-mosaic {
+    min-height: 200px;
+    max-height: 260px;
+  }
+
+  .exp-cinema-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .exp-cinema-role {
+    font-size: 1.45rem;
+  }
+
+  /* Tighten experience card body on small phones */
+  .exp-card-body {
+    padding: 1.5rem;
+  }
+
+  /* Prevent contact pill value from overflowing */
+  .contact-pill-value {
+    max-width: calc(100vw - 120px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Nav actions – prevent overflow on narrow screens */
+  .nav-actions {
+    gap: 0.4rem;
+  }
+
+  /* Footer nav wraps properly */
+  .footer-nav {
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    justify-content: center;
+  }
+}
+
+/* ── Portrait phones in landscape (≤600px height viewport) ── */
+@media (max-height: 600px) and (max-width: 900px) {
+  .hero-image-composition {
+    height: clamp(200px, 35vh, 300px);
+  }
+
+  .hero-content {
+    padding-top: calc(var(--nav-height) + 1rem);
+    padding-bottom: 2rem;
+    gap: 1rem;
+  }
+
+  .hero-scroll-indicator {
+    display: none;
+  }
+}
+
+/* ── Ensure images in mosaic tiles never overflow at narrow widths ── */
+@media (max-width: 400px) {
+  .exp-mosaic-accent {
+    display: none; /* Hide the overlapping accent image on very small screens */
+  }
+
+  .exp-cinema-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .exp-cinema-badge {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Hero name as small as possible without breaking layout */
+  .hero-name {
+    font-size: clamp(1.6rem, 9vw, 2.2rem);
+  }
+
+  /* CTAs full-width on very small screens */
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  /* Stats grid more compact */
+  .stat-card {
+    padding: 0.85rem 0.6rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  /* Skills badges smaller on tiny screens */
+  .skill-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  /* Education cards extra padding reduction */
+  .edu-card {
+    padding: 1.25rem 0.85rem;
+  }
+}
+
+/* ── Ensure the experience EGLO content doesn't overflow at mid-tablet ── */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .exp-cinema-content {
+    padding: 3rem 2.5rem;
+  }
+
+  .exp-cinema-role {
+    font-size: 1.75rem;
+  }
+
+  .exp-cinema-mosaic {
+    min-height: 350px;
+    max-height: 450px;
+  }
+}
+
+/* ── Fix contact pill overflow on narrow screens ── */
+@media (max-width: 768px) {
+  .contact-pill-value {
+    max-width: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* ── Ensure skills badge cloud wraps gracefully on all sizes ── */
+.badge-cloud {
+  row-gap: 0.5rem;
+}
+
+/* ── Ensure footer nav links don't overflow on small screens ── */
+@media (max-width: 480px) {
+  .footer-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.65rem;
+    justify-content: center;
+  }
+
+  .footer-nav a {
+    font-size: 0.72rem;
+  }
+}
+
+/* ── Fix potential overflow from long email address in about section ── */
+.info-value {
+  word-break: break-all;
+}
+
+/* ── Prevent horizontal scroll from any element ── */
+section, header, footer, .container, .hero-content, 
+.about-grid, .experience-showcase, .edu-grid,
+.skills-grid, .languages-section, .contact-container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ── Touch-friendly minimum tap targets ── */
+@media (max-width: 768px) {
+  .nav-link,
+  .lang-btn,
+  .social-link,
+  .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.25rem;
+  }
+
+  /* Hero socials — bigger touch targets on mobile */
+  .social-link {
+    width: 44px;
+    height: 44px;
+  }
+}
