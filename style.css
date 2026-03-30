@@ -148,26 +148,34 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   margin-bottom: 4rem;
 }
 
 .section-label {
+  order: 2;
   display: inline-block;
   font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0;
+  margin-top: 15px;
 }
 
 .section-title {
+  order: 1;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 700;
   color: var(--text-primary);
   position: relative;
   display: inline-block;
+  margin-bottom: 12px;
 }
 
 .section-title::after {
@@ -183,6 +191,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .section-subtitle {
+  order: 3;
   margin-top: var(--space-md);
   font-size: var(--text-lg);
   color: var(--text-secondary);
@@ -375,21 +384,22 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .logo-initials {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 2.2rem;
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
   line-height: 1;
-  font-family: var(--font-main);
-  text-transform: uppercase;
+  font-family: 'Dancing Script', cursive;
+  text-transform: none;
 }
 
 .logo-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  margin-bottom: 8px;
+  margin-bottom: 2px;
+  margin-left: 2px;
   animation: pulse-dot 2.5s ease-in-out infinite;
 }
 
@@ -436,24 +446,42 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 /* ============================================================ */
-/* Professional Sliding Pill Language Switcher */
 /* ============================================================ */
-.lang-pill-switcher {
+/* NEW! UNIFIED ACTION PILL (Theme + Lang + CV grouped perfectly) */
+/* ============================================================ */
+.unified-action-pill {
   position: relative;
   display: flex;
   align-items: center;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 40px;
-  padding: 4px;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: 50px;
+  padding: 5px;
+  gap: 2px; /* spacing inside the trench */
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4), inset 0 0 3px rgba(0,0,0,0.2);
 }
 
-[data-theme="light"] .lang-pill-switcher {
-  background: rgba(226, 232, 240, 0.6);
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+[data-theme="light"] .unified-action-pill {
+  background: #EAF2FA; /* Exact soft grayish blue from mockup */
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.06), inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.pill-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-subtle);
+  margin: 0 4px;
+}
+
+[data-theme="light"] .pill-divider {
+  background: rgba(0, 0, 0, 0.08); /* Darken slightly against EAF2FA */
+}
+
+/* Keeps JS slider offsetLeft calculations accurate within the nested pill structure */
+.lang-inner-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .lang-btn {
@@ -461,14 +489,18 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   z-index: 2;
   border: none;
   background: transparent;
-  padding: 0.45rem 0.8rem;
-  font-size: 0.75rem;
+  padding: 0.5rem 0.95rem; /* Better breathing room */
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--text-muted);
   cursor: pointer;
   transition: color 0.3s ease;
-  min-width: 42px;
+  min-width: 44px;
   text-align: center;
+}
+
+[data-theme="light"] .lang-btn {
+  color: #64748B; /* Dark slate gray inactive text matching image */
 }
 
 .lang-btn.active {
@@ -477,49 +509,64 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 .lang-slider {
   position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  width: 42px;
-  background: var(--accent);
-  border-radius: 30px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 44px; /* default starting width */
+  background: #2563EB; /* Vibrant Royal blue from image */
+  border-radius: 40px;
   z-index: 1;
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4), 0 2px 4px rgba(37, 99, 235, 0.2);
 }
 
-/* Modern Nav Action Buttons (Circles) */
-.modern-circle-btn {
-  width: 44px;
-  height: 44px;
+[data-theme="light"] .lang-slider {
+  background: #2563EB; /* Maintain vivid blue in light mode too */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35), 0 2px 4px rgba(37, 99, 235, 0.15);
+}
+
+/* Unified Action Buttons inside the pill (Theme + CV) */
+.unified-icon-btn {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  border: none;
+  background: transparent; /* blend into the trench by default */
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
+  color: var(--text-muted);
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   flex-shrink: 0;
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
 }
 
-.modern-circle-btn:hover {
-  background: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-  transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+[data-theme="light"] .unified-icon-btn {
+  color: #64748B; /* matches inactive text initially */
 }
 
-.modern-circle-btn svg {
+/* Neumorphic 'POP' out of the trench on hover */
+.unified-icon-btn:hover {
+  background: var(--bg-card);
+  color: #60A5FA;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .unified-icon-btn:hover {
+  background: #ffffff; /* Creates a raised white circle inside the EAF2FA pill! */
+  color: #2563EB;
+  box-shadow: 0 4px 12px rgba(50, 50, 93, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.unified-icon-btn svg {
   width: 20px;
   height: 20px;
   transition: transform 0.3s ease;
 }
 
-.modern-circle-btn:hover svg {
+.unified-icon-btn:hover svg {
   transform: scale(1.1);
 }
 
@@ -593,6 +640,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .hero-text {
   flex: 1;
   max-width: 700px;
+  margin-left: 15vw; /* Shifts the text block to the right dynamically (~20%) */
 }
 
 .hero-image-wrap {
@@ -2319,7 +2367,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     gap: 2rem;
   }
 
-  .hero-text { max-width: 100%; }
+  .hero-text { max-width: 100%; margin-left: 0; }
 
   .hero-greeting { justify-content: center; }
 
@@ -3073,13 +3121,15 @@ body.modal-open { overflow: hidden; }
 }
 
 .exp-cinema-bullets li::before {
-  content: '✓';
+  content: '';
   position: absolute;
   left: 0;
-  top: 2px;
-  color: var(--accent);
-  font-size: 1.1rem;
-  font-weight: 900;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 4px var(--accent);
 }
 
 /* ══ Bullet Animation States ══ */
@@ -3170,6 +3220,15 @@ body.modal-open { overflow: hidden; }
 
 [data-theme="dark"] .exp-mosaic-overlay {
   background: linear-gradient(to right, var(--bg-card) 0%, transparent 25%, transparent 60%, rgba(99, 102, 241, 0.1) 100%);
+}
+
+[data-theme="light"] .exp-mosaic-accent {
+  box-shadow: none; /* Make picture limits invisible in day view */
+}
+
+[data-theme="light"] .exp-mosaic-main {
+  /* For day view, use a softer mask so it doesn't leave hard edges */
+  opacity: 0.9;
 }
 
 /* ══ 2. Compact Horizontal Cards (BIM, ONEE, TAN-FISC) ══ */
@@ -3286,12 +3345,15 @@ body.modal-open { overflow: hidden; }
 }
 
 .exp-card-bullets li::before {
-  content: '▸';
+  content: '';
   position: absolute;
   left: 0;
-  top: 1px;
-  color: var(--accent);
-  font-size: 1.15rem;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 4px var(--accent);
 }
 
 /* ══ Responsive Breakpoints ══ */
@@ -3368,6 +3430,7 @@ body.modal-open { overflow: hidden; }
 
   .hero-text {
     max-width: 100%;
+    margin-left: 0;
   }
 
   .hero-greeting {
@@ -3648,10 +3711,13 @@ body.modal-open { overflow: hidden; }
   }
 }
 
-/* ── Ensure images in mosaic tiles never overflow at narrow widths ── */
 @media (max-width: 400px) {
   .exp-mosaic-accent {
-    display: none; /* Hide the overlapping accent image on very small screens */
+    /* Ensure the second image still shows gracefully on ultra tight screens */
+    width: 42%;
+    height: 65%;
+    left: 2%;
+    bottom: -6%;
   }
 
   .exp-cinema-content {
