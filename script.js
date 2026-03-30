@@ -427,6 +427,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const langBtns = document.querySelectorAll('.lang-btn');
+  const langSlider = document.getElementById('lang-slider');
+
+  const updateSlider = (activeBtn) => {
+    if (!langSlider || !activeBtn) return;
+    // For robust sliding regardless of container padding, we calculate offset against the relative parent
+    langSlider.style.width = activeBtn.offsetWidth + 'px';
+    langSlider.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
+  };
 
   const applyTranslation = (lang) => {
     const dict = translations[lang] || translations['en'];
@@ -449,8 +457,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update <html lang=""> attribute
     document.documentElement.setAttribute('lang', lang);
-
-
   };
 
   const setLanguage = (lang) => {
@@ -458,7 +464,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update active button style
     langBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      const isActive = btn.getAttribute('data-lang') === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-checked', isActive.toString());
+      if (isActive) {
+        updateSlider(btn);
+      }
     });
 
     applyTranslation(lang);
@@ -466,11 +477,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize on load
   const savedLang = localStorage.getItem('preferred_lang') || 'en';
-  setLanguage(savedLang);
+  // Ensure layout is evaluated and slider matches correct position
+  setTimeout(() => {
+    setLanguage(savedLang);
+  }, 50);
 
-  // Listen for button clicks
+  // Re-calculate slider on window resize to keep it aligned
+  window.addEventListener('resize', () => {
+    const activeBtn = document.querySelector('.lang-btn.active');
+    if (activeBtn) updateSlider(activeBtn);
+  });
+
+  // Listen for language option clicks
   langBtns.forEach(btn => {
-    btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+    btn.addEventListener('click', () => {
+      setLanguage(btn.getAttribute('data-lang'));
+    });
   });
 
   // ==========================================================
@@ -655,5 +677,36 @@ document.addEventListener('DOMContentLoaded', () => {
       contactEmailLink.removeAttribute('target'); // Removing target="_blank" since it's unnecessary for app links
     }
   }
+
+  // ==========================================================
+  // 9. LOCAL FILE RENDER FIX (Hash Links Intercept)
+  // ==========================================================
+  // Fixes "Unsafe attempt to load URL... from frame" local security error
+  // intercepting native hash-anchors to use smooth JS scrolling instead 
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      // Prevent the browser's default exact URL navigation modification
+      e.preventDefault(); 
+      const targetId = this.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+      
+      if (targetEl) {
+        // Find correct header offset for elegant visual positioning
+        const headerOffset = header ? header.offsetHeight : 80;
+        const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({
+          top: targetPos,
+          behavior: 'smooth'
+        });
+        
+        // Ensure mobile nav menu closes on selection automatically
+        if (navLinks && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          document.getElementById('nav-toggle').classList.remove('active');
+          document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  });
 
 });
