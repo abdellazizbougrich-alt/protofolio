@@ -496,40 +496,37 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================
-  // 4. HEADER SCROLL STATE & SCROLL-TO-TOP BUTTON
+  // 4 & 5. SCROLL PERFORMANCE OPTIMIZATION (Header, To-Top, Nav)
   // ==========================================================
   const header = document.getElementById('header');
   const scrollTopBtn = document.getElementById('scroll-top');
-
-  window.addEventListener('scroll', () => {
-    // Header shrink
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-
-    // Scroll to top button visibility
-    if (window.scrollY > 500) {
-      scrollTopBtn.classList.add('visible');
-    } else {
-      scrollTopBtn.classList.remove('visible');
-    }
-  }, { passive: true });
-
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // ==========================================================
-  // 5. ACTIVE NAV LINK ON SCROLL
-  // ==========================================================
   const sections = document.querySelectorAll('section[id]');
   
-  const highlightNavLink = () => {
-    const scrollY = window.scrollY;
-    const headerHeight = header.offsetHeight;
+  let isScrolling = false;
 
+  const handleScrollEvents = () => {
+    const scrollY = window.scrollY;
+    const headerHeight = header ? header.offsetHeight : 80;
+
+    // 1. Header shrink
+    if (header) {
+      if (scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // 2. Scroll to top button visibility
+    if (scrollTopBtn) {
+      if (scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }
+
+    // 3. Highlight active Nav Link
     sections.forEach(section => {
       const sectionTop = section.offsetTop - headerHeight - 100;
       const sectionHeight = section.offsetHeight;
@@ -542,9 +539,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navLink) navLink.classList.remove('active');
       }
     });
+
+    isScrolling = false;
   };
 
-  window.addEventListener('scroll', highlightNavLink, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(handleScrollEvents);
+      isScrolling = true;
+    }
+  }, { passive: true });
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // ==========================================================
   // 6. INTERSECTION OBSERVER (Scroll Animations)
