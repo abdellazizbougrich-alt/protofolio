@@ -2701,12 +2701,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 /* ── Prevent horizontal scroll from any element ── */
-section, header, footer, .container, .hero-content, 
+section, footer, .container, .hero-content,
 .about-grid, .experience-showcase, .edu-grid,
 .skills-grid, .languages-section, .contact-container {
   max-width: 100%;
   overflow-x: hidden;
 }
+/* NOTE: header is intentionally excluded — overflow:hidden on header clips nav dropdowns */
+
 
 /* ── Touch-friendly minimum tap targets ── */
 @media (max-width: 768px) {
@@ -2969,8 +2971,8 @@ footer {
 
 /* ─── 5. Ultra-small phones: extra safety ─── */
 @media (max-width: 420px) {
-  /* Make every direct child of body sections behave */
-  header, main, footer {
+  /* Make every direct child of body sections behave (NOT header — clips dropdowns) */
+  main, footer {
     max-width: 100vw;
     overflow-x: hidden;
   }

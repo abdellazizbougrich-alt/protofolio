@@ -483,39 +483,55 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('preferred_lang') || 'en';
   setLanguage(savedLang);
 
-  // Robust Global Event Delegation for Dropdown
-  document.addEventListener('click', (e) => {
-    const toggleBtn = e.target.closest('#lang-toggle-btn');
-    const langOption = e.target.closest('.lang-option');
-    const menu = document.getElementById('lang-dropdown-menu');
-    
-    if (!menu) return;
+  // ── Language Dropdown: direct listeners (avoids conflict with nav's document handler) ──
+  const langToggleBtn = document.getElementById('lang-toggle-btn');
+  const langDropdownMenu = document.getElementById('lang-dropdown-menu');
 
-    // Handle Language Option Click
-    if (langOption) {
-      e.preventDefault();
-      e.stopPropagation();
-      setLanguage(langOption.getAttribute('data-lang'));
-      menu.classList.remove('open');
-      const btn = document.getElementById('lang-toggle-btn');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-      return;
-    }
+  // Helper: open/close the dropdown
+  const openLangMenu = () => {
+    langDropdownMenu.classList.add('open');
+    langToggleBtn.setAttribute('aria-expanded', 'true');
+  };
 
-    // Handle Toggle Click
-    if (toggleBtn) {
-      e.preventDefault();
+  const closeLangMenu = () => {
+    langDropdownMenu.classList.remove('open');
+    langToggleBtn.setAttribute('aria-expanded', 'false');
+  };
+
+  // Toggle on button click
+  if (langToggleBtn && langDropdownMenu) {
+    langToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent this from immediately closing via the outside-click handler
+      const isOpen = langDropdownMenu.classList.contains('open');
+      isOpen ? closeLangMenu() : openLangMenu();
+    });
+
+    // Select a language option
+    langDropdownMenu.addEventListener('click', (e) => {
+      const option = e.target.closest('.lang-option');
+      if (!option) return;
       e.stopPropagation();
-      const isOpen = menu.classList.contains('open');
-      menu.classList.toggle('open');
-      toggleBtn.setAttribute('aria-expanded', !isOpen);
-    } else if (!menu.contains(e.target)) {
-      // Clicked outside
-      menu.classList.remove('open');
-      const btn = document.getElementById('lang-toggle-btn');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-    }
-  });
+      setLanguage(option.getAttribute('data-lang'));
+      closeLangMenu();
+    });
+
+    // Close when clicking anywhere outside the wrapper
+    document.addEventListener('click', (e) => {
+      if (!langDropdownMenu.classList.contains('open')) return;
+      const wrapper = document.getElementById('lang-dropdown-wrapper');
+      if (wrapper && !wrapper.contains(e.target)) {
+        closeLangMenu();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && langDropdownMenu.classList.contains('open')) {
+        closeLangMenu();
+        langToggleBtn.focus();
+      }
+    });
+  }
 
   // ==========================================================
   // 4 & 5. SCROLL PERFORMANCE OPTIMIZATION (Header, To-Top, Nav)
