@@ -683,32 +683,62 @@ document.addEventListener('DOMContentLoaded', () => {
   const bulletObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-
       const card = entry.target;
-      const bullets = card.querySelectorAll('.exp-cinema-bullets li, .exp-card-bullets li');
-
-      // Stagger reveal from hidden state to visible state
+      // CVT bullets + legacy selectors (kept for safety)
+      const bullets = card.querySelectorAll('.cvt-bullets li, .exp-cinema-bullets li, .exp-card-bullets li');
       bullets.forEach((li, i) => {
         setTimeout(() => {
           li.classList.remove('bullet-hidden');
           li.classList.add('bullet-visible');
-        }, i * 140 + 50); // Meticulously tuned stagger to match the right-in transition
+        }, i * 140 + 50);
       });
-
       observer.unobserve(card);
     });
   }, { threshold: 0.15 });
 
-  // Target the new cinematic and card blocks
-  const expBlocks = document.querySelectorAll('.exp-cinema, .exp-card');
+  // Target CVT cards + any legacy cards still in DOM
+  const expBlocks = document.querySelectorAll('.cvt-card, .exp-cinema, .exp-card');
   expBlocks.forEach(card => {
-    // Hide all bullets immediately on load so they are ready to animate in
-    const bullets = card.querySelectorAll('.exp-cinema-bullets li, .exp-card-bullets li');
+    const bullets = card.querySelectorAll('.cvt-bullets li, .exp-cinema-bullets li, .exp-card-bullets li');
     bullets.forEach(li => li.classList.add('bullet-hidden'));
-    
-    // Begin observing
     bulletObserver.observe(card);
   });
+
+  // ----------------------------------------------------------
+  // CVT Parallax — shift .cvt-img on scroll for depth effect
+  // ----------------------------------------------------------
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const cvtImgs = document.querySelectorAll('.cvt-img');
+    if (cvtImgs.length) {
+      let rafPending = false;
+      const updateParallax = () => {
+        cvtImgs.forEach(img => {
+          const card = img.closest('.cvt-card');
+          if (!card) return;
+          const rect = card.getBoundingClientRect();
+          const vh = window.innerHeight;
+          // Only move when card is in view
+          if (rect.bottom < 0 || rect.top > vh) return;
+          // Center-relative offset: 0 at center, ±1 at edges
+          const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
+          // Parallax magnitude: ±40px max
+          const shift = progress * 40;
+          img.style.transform = `translateY(${shift}px)`;
+        });
+        rafPending = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!rafPending) {
+          rafPending = true;
+          requestAnimationFrame(updateParallax);
+        }
+      }, { passive: true });
+
+      // Initial call so images are positioned correctly on load
+      updateParallax();
+    }
+  }
 
   // ==========================================================
   // EXPERIENCE ELEGANCE: Duration labels + Tenure progress bars
