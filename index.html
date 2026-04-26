@@ -585,7 +585,7 @@
           </div>
 
           <!-- ── LANGUAGE RINGS ── -->
-          <div class="sv2-block reveal">
+          <div class="sv2-block reveal" id="sv2-lang-block">
             <div class="sv2-block-header">
               <span class="sv2-block-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -594,55 +594,160 @@
             </div>
             <div class="sv2-lang-row" id="sv2-lang-row">
 
-              <div class="sv2-lang-card" aria-label="Arabic — Native C2, 100% proficiency">
+              <div class="sv2-lang-card lang-drop-in" style="--drop-delay:0s"
+                   aria-label="Arabic, Native proficiency, C2 level, 100% complete">
                 <div class="sv2-ring-wrap">
-                  <svg class="sv2-ring-svg" viewBox="0 0 90 90" aria-hidden="true">
-                    <circle class="sv2-ring-bg" cx="45" cy="45" r="38"/>
-                    <circle class="sv2-ring-fill" cx="45" cy="45" r="38" data-pct="100" stroke-dasharray="0 238.76" stroke-dashoffset="0"/>
+                  <svg class="sv2-ring-svg" viewBox="0 0 140 140" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="sv2-rg-ar" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#14b8a6"/>
+                        <stop offset="100%" stop-color="#22d3ee"/>
+                      </linearGradient>
+                    </defs>
+                    <circle class="sv2-ring-bg" cx="70" cy="70" r="58"/>
+                    <circle class="sv2-ring-fill" cx="70" cy="70" r="58"
+                            data-pct="100" stroke-dasharray="0 364.42" stroke-dashoffset="0"
+                            stroke="url(#sv2-rg-ar)"/>
                   </svg>
-                  <div class="sv2-ring-center"><img src="https://flagcdn.com/w40/ma.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/></div>
+                  <div class="sv2-ring-center">
+                    <img src="https://flagcdn.com/w80/ma.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/>
+                  </div>
                 </div>
-                <span class="sv2-lang-name" data-i18n="lang.arabic">Arabic</span>
-                <span class="sv2-lang-level">Native · C2</span>
+                <div class="sv2-lang-name-group">
+                  <span class="sv2-lang-name" data-i18n="lang.arabic">Arabic</span>
+                  <span class="sv2-lang-native" aria-hidden="true">العربية</span>
+                </div>
+                <span class="sv2-lang-desc">Native</span>
+                <span class="sv2-lang-pill"><span class="sv2-pill-cefr">C2</span></span>
+                <div class="sv2-micro-bar-wrap" aria-hidden="true">
+                  <div class="sv2-micro-track"><div class="sv2-micro-fill" data-micro-pct="100"></div></div>
+                </div>
               </div>
 
-              <div class="sv2-lang-card" aria-label="English — Professional C1, 85% proficiency">
+              <div class="sv2-lang-card lang-drop-in" style="--drop-delay:0.15s"
+                   aria-label="English, Professional proficiency, C1 level, 85% complete">
                 <div class="sv2-ring-wrap">
-                  <svg class="sv2-ring-svg" viewBox="0 0 90 90" aria-hidden="true">
-                    <circle class="sv2-ring-bg" cx="45" cy="45" r="38"/>
-                    <circle class="sv2-ring-fill" cx="45" cy="45" r="38" data-pct="85" stroke-dasharray="0 238.76" stroke-dashoffset="0"/>
+                  <svg class="sv2-ring-svg" viewBox="0 0 140 140" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="sv2-rg-en" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#14b8a6"/>
+                        <stop offset="100%" stop-color="#22d3ee"/>
+                      </linearGradient>
+                    </defs>
+                    <circle class="sv2-ring-bg" cx="70" cy="70" r="58"/>
+                    <circle class="sv2-ring-fill" cx="70" cy="70" r="58"
+                            data-pct="85" stroke-dasharray="0 364.42" stroke-dashoffset="0"
+                            stroke="url(#sv2-rg-en)"/>
                   </svg>
-                  <div class="sv2-ring-center"><img src="https://flagcdn.com/w40/gb.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/></div>
+                  <div class="sv2-ring-center">
+                    <img src="https://flagcdn.com/w80/gb.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/>
+                  </div>
                 </div>
-                <span class="sv2-lang-name" data-i18n="lang.english">English</span>
-                <span class="sv2-lang-level">Professional · C1</span>
+                <div class="sv2-lang-name-group">
+                  <span class="sv2-lang-name" data-i18n="lang.english">English</span>
+                  <span class="sv2-lang-native" aria-hidden="true">English</span>
+                </div>
+                <span class="sv2-lang-desc">Professional</span>
+                <span class="sv2-lang-pill"><span class="sv2-pill-cefr">C1</span></span>
+                <div class="sv2-micro-bar-wrap" aria-hidden="true">
+                  <div class="sv2-micro-track"><div class="sv2-micro-fill" data-micro-pct="85"></div></div>
+                </div>
               </div>
 
-              <div class="sv2-lang-card" aria-label="French — Advanced B2, 70% proficiency">
+              <div class="sv2-lang-card lang-drop-in" style="--drop-delay:0.30s"
+                   aria-label="French, Advanced proficiency, B2 level, 70% complete">
                 <div class="sv2-ring-wrap">
-                  <svg class="sv2-ring-svg" viewBox="0 0 90 90" aria-hidden="true">
-                    <circle class="sv2-ring-bg" cx="45" cy="45" r="38"/>
-                    <circle class="sv2-ring-fill" cx="45" cy="45" r="38" data-pct="70" stroke-dasharray="0 238.76" stroke-dashoffset="0"/>
+                  <svg class="sv2-ring-svg" viewBox="0 0 140 140" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="sv2-rg-fr" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#14b8a6"/>
+                        <stop offset="100%" stop-color="#22d3ee"/>
+                      </linearGradient>
+                    </defs>
+                    <circle class="sv2-ring-bg" cx="70" cy="70" r="58"/>
+                    <circle class="sv2-ring-fill" cx="70" cy="70" r="58"
+                            data-pct="70" stroke-dasharray="0 364.42" stroke-dashoffset="0"
+                            stroke="url(#sv2-rg-fr)"/>
                   </svg>
-                  <div class="sv2-ring-center"><img src="https://flagcdn.com/w40/fr.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/></div>
+                  <div class="sv2-ring-center">
+                    <img src="https://flagcdn.com/w80/fr.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/>
+                  </div>
                 </div>
-                <span class="sv2-lang-name" data-i18n="lang.french">French</span>
-                <span class="sv2-lang-level">Advanced · B2</span>
+                <div class="sv2-lang-name-group">
+                  <span class="sv2-lang-name" data-i18n="lang.french">French</span>
+                  <span class="sv2-lang-native" aria-hidden="true">Français</span>
+                </div>
+                <span class="sv2-lang-desc">Advanced</span>
+                <span class="sv2-lang-pill"><span class="sv2-pill-cefr">B2</span></span>
+                <div class="sv2-micro-bar-wrap" aria-hidden="true">
+                  <div class="sv2-micro-track"><div class="sv2-micro-fill" data-micro-pct="70"></div></div>
+                </div>
               </div>
 
-              <div class="sv2-lang-card" aria-label="Italian — Intermediate B1, 55% proficiency">
+              <div class="sv2-lang-card lang-drop-in" style="--drop-delay:0.45s"
+                   aria-label="Italian, Intermediate proficiency, B1 level, 55% complete">
                 <div class="sv2-ring-wrap">
-                  <svg class="sv2-ring-svg" viewBox="0 0 90 90" aria-hidden="true">
-                    <circle class="sv2-ring-bg" cx="45" cy="45" r="38"/>
-                    <circle class="sv2-ring-fill" cx="45" cy="45" r="38" data-pct="55" stroke-dasharray="0 238.76" stroke-dashoffset="0"/>
+                  <svg class="sv2-ring-svg" viewBox="0 0 140 140" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="sv2-rg-it" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#14b8a6"/>
+                        <stop offset="100%" stop-color="#22d3ee"/>
+                      </linearGradient>
+                    </defs>
+                    <circle class="sv2-ring-bg" cx="70" cy="70" r="58"/>
+                    <circle class="sv2-ring-fill" cx="70" cy="70" r="58"
+                            data-pct="55" stroke-dasharray="0 364.42" stroke-dashoffset="0"
+                            stroke="url(#sv2-rg-it)"/>
                   </svg>
-                  <div class="sv2-ring-center"><img src="https://flagcdn.com/w40/it.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/></div>
+                  <div class="sv2-ring-center">
+                    <img src="https://flagcdn.com/w80/it.webp" alt="" class="sv2-flag" aria-hidden="true" loading="lazy"/>
+                  </div>
                 </div>
-                <span class="sv2-lang-name" data-i18n="lang.italian">Italian</span>
-                <span class="sv2-lang-level">Intermediate · B1</span>
+                <div class="sv2-lang-name-group">
+                  <span class="sv2-lang-name" data-i18n="lang.italian">Italian</span>
+                  <span class="sv2-lang-native" aria-hidden="true">Italiano</span>
+                </div>
+                <span class="sv2-lang-desc">Intermediate</span>
+                <span class="sv2-lang-pill"><span class="sv2-pill-cefr">B1</span></span>
+                <div class="sv2-micro-bar-wrap" aria-hidden="true">
+                  <div class="sv2-micro-track"><div class="sv2-micro-fill" data-micro-pct="55"></div></div>
+                </div>
               </div>
 
             </div>
+            
+            <!-- CEFR Scale Legend -->
+            <div class="sv2-cefr-legend lang-drop-in" style="--drop-delay:0.60s">
+              <span class="cefr-legend-title">CEFR Scale</span>
+              <div class="cefr-legend-scale">
+                <div class="cefr-legend-track-line"></div>
+                <div class="cefr-legend-item">
+                  <span class="cefr-legend-dot"></span>
+                  <span class="cefr-legend-text">A1</span>
+                </div>
+                <div class="cefr-legend-item">
+                  <span class="cefr-legend-dot"></span>
+                  <span class="cefr-legend-text">A2</span>
+                </div>
+                <div class="cefr-legend-item active" title="Italian">
+                  <span class="cefr-legend-dot cefr-it"></span>
+                  <span class="cefr-legend-text">B1</span>
+                </div>
+                <div class="cefr-legend-item active" title="French">
+                  <span class="cefr-legend-dot cefr-fr"></span>
+                  <span class="cefr-legend-text">B2</span>
+                </div>
+                <div class="cefr-legend-item active" title="English">
+                  <span class="cefr-legend-dot cefr-en"></span>
+                  <span class="cefr-legend-text">C1</span>
+                </div>
+                <div class="cefr-legend-item active" title="Arabic">
+                  <span class="cefr-legend-dot cefr-ar"></span>
+                  <span class="cefr-legend-text">C2</span>
+                </div>
+              </div>
+            </div>
+
           </div>
 
 

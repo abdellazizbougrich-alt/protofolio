@@ -630,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(sv2Defs);
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const CIRCUMFERENCE = 2 * Math.PI * 38; // r=38 → ≈ 238.76
+  const CIRCUMFERENCE = 2 * Math.PI * 58; // r=58 → ≈ 364.42
 
   // ── Animate progress bars ──
   const barsContainer = document.getElementById('sv2-bars');
@@ -653,28 +653,54 @@ document.addEventListener('DOMContentLoaded', () => {
     barsObserver.observe(barsContainer);
   }
 
-  // ── Animate language rings ──
-  const langRow = document.getElementById('sv2-lang-row');
-  if (langRow) {
-    const ringsObserver = new IntersectionObserver((entries, obs) => {
+  // ── Language rings + drop-in animations + micro bars ──
+  const langBlock = document.getElementById('sv2-lang-block');
+  if (langBlock) {
+    const langObserver = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        const rings = entry.target.querySelectorAll('.sv2-ring-fill');
+
+        const cards   = entry.target.querySelectorAll('.sv2-lang-card');
+        const rings   = entry.target.querySelectorAll('.sv2-ring-fill');
+        const micros  = entry.target.querySelectorAll('.sv2-micro-fill');
+        const legend  = entry.target.querySelector('.sv2-cefr-legend');
+
+        // 1. Drop-in animation for each card
+        cards.forEach(card => {
+          card.classList.add('lang-animated');
+        });
+        if (legend) legend.classList.add('lang-animated');
+
+        // 2. Animate ring fills
         rings.forEach((ring, i) => {
-          const pct = parseFloat(ring.dataset.pct) || 0;
+          const pct    = parseFloat(ring.dataset.pct) || 0;
           const filled = (pct / 100) * CIRCUMFERENCE;
-          const gap = CIRCUMFERENCE - filled;
+          const gap    = CIRCUMFERENCE - filled;
           const animate = () => { ring.style.strokeDasharray = filled + ' ' + gap; };
           if (prefersReducedMotion) {
             animate();
           } else {
-            setTimeout(animate, i * 150);
+            // Delay ring fill to sync roughly with drop-in landing
+            setTimeout(animate, i * 150 + 400);
           }
         });
+
+        // 3. Animate micro bars
+        micros.forEach((micro, i) => {
+          const pct = parseFloat(micro.dataset.microPct) || 0;
+          const animate = () => { micro.style.width = pct + '%'; };
+          if (prefersReducedMotion) {
+            animate();
+          } else {
+            setTimeout(animate, i * 150 + 500);
+          }
+        });
+
         obs.unobserve(entry.target);
       });
-    }, { threshold: 0.2 });
-    ringsObserver.observe(langRow);
+    }, { threshold: 0.3 });
+
+    langObserver.observe(langBlock);
   }
 
   // ----------------------------------------------------------
