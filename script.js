@@ -541,19 +541,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section[id]');
   
   let isScrolling = false;
+  let lastScrollY = window.scrollY;
 
   const handleScrollEvents = () => {
     const scrollY = window.scrollY;
     const headerHeight = header ? header.offsetHeight : 80;
 
-    // 1. Header shrink
+    // 1. Header shrink & Hide logic
     if (header) {
+      // Hide/Show on scroll direction
+      if (scrollY > lastScrollY && scrollY > 200) {
+        header.classList.add('header--hidden');
+      } else {
+        header.classList.remove('header--hidden');
+      }
+
+      // Shrink effect
       if (scrollY > 50) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
     }
+    lastScrollY = scrollY;
 
     // 2. Scroll to top button visibility
     if (scrollTopBtn) {
@@ -563,20 +573,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTopBtn.classList.remove('visible');
       }
     }
-
-    // 3. Highlight active Nav Link
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - headerHeight - 100;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-      
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        if (navLink) navLink.classList.add('active');
-      } else {
-        if (navLink) navLink.classList.remove('active');
-      }
-    });
 
     isScrolling = false;
   };
@@ -620,36 +616,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // Staggered skill tags and circular progress animation
-  const skillsObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      
-      const container = entry.target;
-      
-      // Animate tags
-      const tags = container.querySelectorAll('.skill-tag');
-      tags.forEach((tag, index) => {
-        setTimeout(() => {
-          tag.classList.add('pop');
-        }, index * 80); // 80ms stagger
-      });
+  // Redesigned Skill progress bar animation (sv2)
+  // Inject one shared SVG gradient definition into <body> for ring fills
+  const sv2Defs = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  sv2Defs.setAttribute('class', 'sv2-ring-defs');
+  sv2Defs.setAttribute('aria-hidden', 'true');
+  sv2Defs.innerHTML = `<defs>
+    <linearGradient id="sv2-ring-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>`;
+  document.body.appendChild(sv2Defs);
 
-      // Animate circles
-      const circles = container.querySelectorAll('.reveal-circle');
-      circles.forEach((circle, index) => {
-        setTimeout(() => {
-          const dash = circle.getAttribute('style').match(/--target-dash:\s*([^;]+);/)[1] || '0';
-          circle.setAttribute('stroke-dasharray', `${dash}, 100`);
-        }, index * 150);
-      });
-      
-      observer.unobserve(container);
-    });
-  }, { threshold: 0.1 });
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CIRCUMFERENCE = 2 * Math.PI * 38; // r=38 → ≈ 238.76
 
-  const skillContainers = document.querySelectorAll('.skill-card');
-  skillContainers.forEach(container => skillsObserver.observe(container));
+  // ── Animate progress bars ──
+  const barsContainer = document.getElementById('sv2-bars');
+  if (barsContainer) {
+    const barsObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const fills = entry.target.querySelectorAll('.sv2-fill');
+        fills.forEach((fill, i) => {
+          const target = parseFloat(fill.dataset.target) || 0;
+          if (prefersReducedMotion) {
+            fill.style.width = target + '%';
+          } else {
+            setTimeout(() => { fill.style.width = target + '%'; }, i * 80);
+          }
+        });
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    barsObserver.observe(barsContainer);
+  }
+
+  // ── Animate language rings ──
+  const langRow = document.getElementById('sv2-lang-row');
+  if (langRow) {
+    const ringsObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const rings = entry.target.querySelectorAll('.sv2-ring-fill');
+        rings.forEach((ring, i) => {
+          const pct = parseFloat(ring.dataset.pct) || 0;
+          const filled = (pct / 100) * CIRCUMFERENCE;
+          const gap = CIRCUMFERENCE - filled;
+          const animate = () => { ring.style.strokeDasharray = filled + ' ' + gap; };
+          if (prefersReducedMotion) {
+            animate();
+          } else {
+            setTimeout(animate, i * 150);
+          }
+        });
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+    ringsObserver.observe(langRow);
+  }
 
   // ----------------------------------------------------------
   // Bullet slide-right animation for Work Experience
