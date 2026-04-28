@@ -1948,7 +1948,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
    14. FOOTER
    ============================================================ */
 #footer {
-  /*background: var(--bg-secondary);*/
+  /*background: var(--bg-secondary);
   border-top: 1px solid var(--border-subtle);
   padding: 3rem 0 2rem;
   position: relative;
