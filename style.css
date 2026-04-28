@@ -1947,14 +1947,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 /* ============================================================
    14. FOOTER
    ============================================================ */
-#footer {
+/*#footer {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-subtle);
   padding: 2.5rem 0 1.5rem;
   position: relative;
   margin-top: auto; /* Essential for sticky footer in flex container */
   flex-shrink: 0;
-}
+}*/
 
 .footer-container {
   max-width: var(--max-width);
